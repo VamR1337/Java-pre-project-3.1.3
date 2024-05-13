@@ -78,7 +78,11 @@ public class AdminController {
 
 	@PostMapping("/create")
 	public String saveNewUser(@ModelAttribute("user") User user) {
-		userService.saveUser(user);
+		try {
+			userService.saveUser(user);
+		} catch (Exception e) {
+			return "redirect:/admin";
+		}
 		return "redirect:/admin";
 	}
 }
